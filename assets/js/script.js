@@ -1,4 +1,4 @@
-var timer = 5;
+var timer = 555;
 var time = document.querySelector("#time");
 var wordsMain = document.querySelector("#p1");
 var btnStart = document.querySelector("#start-button");
@@ -6,8 +6,18 @@ var btn1 = document.querySelector("#btn-1");
 var btn2 = document.querySelector("#btn-2");
 var btn3 = document.querySelector("#btn-3");
 var btn4 = document.querySelector("#btn-4");
+var response = document.createElement("div");
+// var allBtns = document.querySelector("#btn-1", "#btn-2", "#btn-3", "#btn-4");
 var showMe1 = function () {
   btn1.style.backgroundColor = "purple";
+  document.getElementById("words-main").appendChild(response);
+  response.innerHTML = "Right/Wrong";
+  response.style.margin = "50px";
+  response.style.borderTop = "solid";
+  response.style.borderTopColor = "darkgray";
+  response.style.width = "800px";
+  response.style.color = "darkgray";
+  response.style.fontSize = "24px";
 };
 var showMe2 = function () {
   btn2.style.backgroundColor = "purple";
@@ -21,25 +31,28 @@ var showMe4 = function () {
 var endQuiz = function () {};
 
 var startQuizButton = function () {
-  wordsMain.innerHTML = "This is the fist question!";
+  wordsMain.innerHTML = "This is the first question!";
   wordsMain.style.fontSize = "24px";
   btnStart.style.display = "none";
   btn1.style.display = "block";
   btn1.innerHTML = "this is the first answer!";
-  btn1.style.fontSize = "18px";
   btn2.style.display = "block";
   btn2.innerHTML = "this is the second answer!";
-  btn2.style.fontSize = "18px";
   btn3.style.display = "block";
   btn3.innerHTML = "this is the third answer!";
-  btn3.style.fontSize = "18px";
   btn4.style.display = "block";
   btn4.innerHTML = "this is the fourth answer!";
-  btn4.style.fontSize = "18px";
 
   var endPrompt = function () {
     alert("Time ran out!");
     clearInterval(myInterval);
+    wordsMain.innerHTML = "Quiz Over!";
+    btn1.style.display = "none";
+    btn2.style.display = "none";
+    btn3.style.display = "none";
+    btn4.style.display = "none";
+    response.style.display = "none";
+
     return;
   };
   var tick_timer = function () {
