@@ -39,7 +39,24 @@ div p {
   text-align: center;
 }
 
-.btn {
+#start-button {
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  background: darkslateblue;
+  color: white;
+  font-size: 2.2rem;
+  border-radius: 12px;
+  top: -3px;
+  height: 65px;
+  width: 200px;
+}
+
+#btn-1,
+#btn-2,
+#btn-3,
+#btn-4 {
+  display: none;
   outline: none;
   border: none;
   padding: 10px 15px;
