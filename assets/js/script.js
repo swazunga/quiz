@@ -1,28 +1,33 @@
-// var wordsMain = "#p1";
+var wordsMain = document.querySelector("#p1");
+var btnStart = document.querySelector("#start-button");
+var btn1 = document.querySelector("#btn-1");
+var btn2 = document.querySelector("#btn-2");
+var btn3 = document.querySelector("#btn-3");
+var btn4 = document.querySelector("#btn-4");
+var showMe = function () {
+  btn1.style.backgroundColor = "purple";
+};
+
 var startQuizButton = function () {
-  document.querySelector("#p1").innerHTML = "This is the fist question!";
-  document.querySelector("#p1").style.fontSize = "24px";
-  document.querySelector("#start-button").style.display = "none";
-  document.querySelector("#btn-1").style.display = "block";
-  document.querySelector("#btn-1").innerHTML = "this is the first answer!";
-  document.querySelector("#btn-1").style.fontSize = "18px";
-  document.querySelector("#btn-2").style.display = "block";
-  document.querySelector("#btn-2").innerHTML = "this is the second answer!";
-  document.querySelector("#btn-2").style.fontSize = "18px";
-  document.querySelector("#btn-3").style.display = "block";
-  document.querySelector("#btn-3").innerHTML = "this is the third answer!";
-  document.querySelector("#btn-3").style.fontSize = "18px";
-  document.querySelector("#btn-4").style.display = "block";
-  document.querySelector("#btn-4").innerHTML = "this is the fourth answer!";
-  document.querySelector("#btn-4").style.fontSize = "18px";
+  wordsMain.innerHTML = "This is the fist question!";
+  wordsMain.style.fontSize = "24px";
+  btnStart.style.display = "none";
+  btn1.style.display = "block";
+  btn1.innerHTML = "this is the first answer!";
+  btn1.style.fontSize = "18px";
+  btn2.style.display = "block";
+  btn2.innerHTML = "this is the second answer!";
+  btn2.style.fontSize = "18px";
+  btn3.style.display = "block";
+  btn3.innerHTML = "this is the third answer!";
+  btn3.style.fontSize = "18px";
+  btn4.style.display = "block";
+  btn4.innerHTML = "this is the fourth answer!";
+  btn4.style.fontSize = "18px";
 };
 
-document
-  .querySelector("#start-button")
-  .addEventListener("click", startQuizButton);
+btnStart.addEventListener("click", startQuizButton);
 
-var answerSelect = function () {
-  console.log("click again");
-};
-
-document.querySelector("#btn-1").addEventListener("click", answerSelect);
+// document.querySelector(".words-main").addEventListener("click", answerSelect);
+btn1.addEventListener("click", showMe, false);
+btn2.addEventListener("click", showMe, false);
