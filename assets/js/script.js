@@ -1,4 +1,4 @@
-var timer = 75;
+var timer = 5;
 var time = document.querySelector("#time");
 var wordsMain = document.querySelector("#p1");
 var btnStart = document.querySelector("#start-button");
@@ -12,10 +12,13 @@ var showMe1 = function () {
 var showMe2 = function () {
   btn2.style.backgroundColor = "purple";
 };
-var endQuiz = function () {
-  alert("Time ran out!");
+var showMe3 = function () {
+  btn3.style.backgroundColor = "purple";
 };
-var countDown = function () {};
+var showMe4 = function () {
+  btn4.style.backgroundColor = "purple";
+};
+var endQuiz = function () {};
 
 var startQuizButton = function () {
   wordsMain.innerHTML = "This is the fist question!";
@@ -34,15 +37,25 @@ var startQuizButton = function () {
   btn4.innerHTML = "this is the fourth answer!";
   btn4.style.fontSize = "18px";
 
+  var endPrompt = function () {
+    alert("Time ran out!");
+    clearInterval(myInterval);
+    return;
+  };
   var tick_timer = function () {
     timer = timer - 1;
-    time.querySelector.innerHTML = "Time: " + timer;
+    time.innerHTML = "Time: " + timer;
+    if (timer < 0) {
+      endPrompt();
+      time.innerHTML = "Time: 0";
+    }
   };
-  setInterval(tick_timer, 1000);
-  console.log(timer);
+  var myInterval = setInterval(tick_timer, 1000);
 };
 
 btnStart.addEventListener("click", startQuizButton);
 
 btn1.addEventListener("click", showMe1, false);
 btn2.addEventListener("click", showMe2, false);
+btn3.addEventListener("click", showMe3, false);
+btn4.addEventListener("click", showMe4, false);
