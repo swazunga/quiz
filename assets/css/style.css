@@ -52,11 +52,13 @@ div p {
   width: 200px;
 }
 
+#question-choices {
+}
+
 #btn-1,
 #btn-2,
 #btn-3,
 #btn-4 {
-  display: none;
   outline: none;
   border: none;
   padding: 10px 15px;
@@ -67,4 +69,8 @@ div p {
   top: -3px;
   height: 65px;
   width: 200px;
+}
+
+.hide {
+  display: none;
 }
