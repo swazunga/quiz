@@ -38,7 +38,6 @@ function endQuiz() {
   finalScoreEl.innerHTML = "You Final Score: " + timer;
   finalEl.appendChild(response);
   response.style.margin = "auto";
-  localStorage.getItem("");
 }
 
 function startQuizButton() {
@@ -132,6 +131,7 @@ var initials = document.querySelector("#initials");
 function highScoreClick() {
   if (initials.value === "") {
     alert("Please enter initials");
+    return;
   } else {
     alert("initials entered!");
   }
