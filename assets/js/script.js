@@ -1,14 +1,10 @@
-var timer = 5555;
+var timer = 555;
 var currentQuestionIndex = 0;
 var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#question-choices");
 var time = document.querySelector("#time");
 var wordsMain = document.querySelector("#p1");
 var btnStart = document.querySelector("#start-button");
-var btn1 = document.querySelector("#btn-1");
-var btn2 = document.querySelector("#btn-2");
-var btn3 = document.querySelector("#btn-3");
-var btn4 = document.querySelector("#btn-4");
 var response = document.createElement("div");
 var start = document.querySelector("#words-main");
 var finalEl = document.querySelector("#final-page");
@@ -26,32 +22,10 @@ var questions = [
   },
 ];
 
-// var allBtns = document.querySelector("#btn-1", "#btn-2", "#btn-3", "#btn-4");
-// var showMe1 = function () {
-//   btn1.style.backgroundColor = "purple";
-//   document.getElementById("words-main").appendChild(response);
-//   response.innerHTML = "Right/Wrong";
-//   response.style.margin = "50px";
-//   response.style.borderTop = "solid";
-//   response.style.borderTopColor = "darkgray";
-//   response.style.width = "800px";
-//   response.style.color = "darkgray";
-//   response.style.fontSize = "24px";
-// };
-// var showMe2 = function () {
-//   btn2.style.backgroundColor = "purple";
-// };
-// var showMe3 = function () {
-//   btn3.style.backgroundColor = "purple";
-// };
-// var showMe4 = function () {
-//   btn4.style.backgroundColor = "purple";
-// };
 function endQuiz() {
   questionsEl.setAttribute("class", "hide");
-  console.log(finalEl.class);
   finalEl.removeAttribute("class");
-  console.log(finalEl.class);
+  //   localStorage.getItem("");
 }
 
 function startQuizButton() {
@@ -64,20 +38,31 @@ function startQuizButton() {
   function endPrompt() {
     alert("Time ran out!");
     clearInterval(myInterval);
-    return;
+    endQuiz();
   }
-  var tick_timer = function () {
+  function tick_timer() {
     timer = timer - 1;
     time.innerHTML = "Time: " + timer;
+    if (currentQuestionIndex === 2) {
+      console.log(currentQuestionIndex);
+      clearInterval(myInterval);
+    }
     if (timer < 0) {
       endPrompt();
       time.innerHTML = "Time: 0";
     }
-  };
+  }
   var myInterval = setInterval(tick_timer, 1000);
 }
 
 function questionClick(event) {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    getQuestion();
+  } else {
+    currentQuestionIndex++;
+    endQuiz();
+  }
   if (event.currentTarget.value === questions[currentQuestionIndex].answer) {
     choicesEl.appendChild(response);
     response.innerHTML = "Right!";
@@ -85,13 +70,6 @@ function questionClick(event) {
     choicesEl.appendChild(response);
     response.innerHTML = "Wrong!";
     timer = timer - 10;
-  }
-
-  if (currentQuestionIndex < questions.length - 1) {
-    currentQuestionIndex++;
-    getQuestion();
-  } else {
-    endQuiz();
   }
 }
 
