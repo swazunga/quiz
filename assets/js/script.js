@@ -14,9 +14,9 @@ var start = document.querySelector("#words-main");
 
 var questions = [
   {
-    title: "question 1",
+    title: "Question #1: What is your favorite letter?",
     choices: ["A", "B", "C", "D"],
-    answer: "answer 1",
+    answer: "A",
   },
   {
     title: "question 2",
@@ -46,39 +46,20 @@ var questions = [
 // var showMe4 = function () {
 //   btn4.style.backgroundColor = "purple";
 // };
-var endQuiz = function () {};
+function endQuiz() {}
 
-var startQuizButton = function () {
-  //   wordsMain.innerHTML = "This is the first question!";
-  //   wordsMain.style.fontSize = "24px";
-  //   btnStart.style.display = "none";
-  //   btn1.style.display = "block";
-  //   btn1.innerHTML = "this is the first answer!";
-  //   btn2.style.display = "block";
-  //   btn2.innerHTML = "this is the second answer!";
-  //   btn3.style.display = "block";
-  //   btn3.innerHTML = "this is the third answer!";
-  //   btn4.style.display = "block";
-  //   btn4.innerHTML = "this is the fourth answer!";
-
+function startQuizButton() {
   start.setAttribute("class", "hide");
 
   questionsEl.removeAttribute("class");
 
   getQuestion();
 
-  var endPrompt = function () {
+  function endPrompt() {
     alert("Time ran out!");
     clearInterval(myInterval);
-    // wordsMain.innerHTML = "Quiz Over!";
-    // btn1.style.display = "none";
-    // btn2.style.display = "none";
-    // btn3.style.display = "none";
-    // btn4.style.display = "none";
-    // response.style.display = "none";
-
     return;
-  };
+  }
   var tick_timer = function () {
     timer = timer - 1;
     time.innerHTML = "Time: " + timer;
@@ -88,10 +69,23 @@ var startQuizButton = function () {
     }
   };
   var myInterval = setInterval(tick_timer, 1000);
-};
+}
 
-function questionClick() {
-  console.log("hello");
+function questionClick(event) {
+  console.log(event.currentTarget.value);
+  if (event.currentTarget.value === questions[currentQuestionIndex].answer) {
+    console.log("Here");
+    choicesEl.appendChild(response);
+    response.innerHTML = "Right!";
+  } else {
+    console.log("There");
+    choicesEl.appendChild(response);
+    response.innerHTML = "Wrong!";
+    timer = timer - 10;
+  }
+
+  currentQuestionIndex++;
+  getQuestion();
 }
 
 function getQuestion() {
@@ -104,14 +98,20 @@ function getQuestion() {
     choiceNode.setAttribute("class", "choice");
     choiceNode.setAttribute("value", choice);
     choiceNode.textContent = i + 1 + ". " + choice;
-    choiceNode.onClick = questionClick();
+    choiceNode.onclick = questionClick;
+    choiceNode.style.outline = "none";
+    choiceNode.style.border = "none";
+    choiceNode.style.padding = "10px 15px";
+    choiceNode.style.color = "white";
+    choiceNode.style.background = "darkslateblue";
+    choiceNode.style.fontSize = "18px";
+    choiceNode.style.borderRadius = "12px";
+    choiceNode.style.top = "-3px";
+    choiceNode.style.height = "65px";
+    choiceNode.style.width = "200px";
+    choiceNode.style.margin = "15px 0";
     choicesEl.appendChild(choiceNode);
   });
 }
 
 btnStart.addEventListener("click", startQuizButton);
-
-// btn1.addEventListener("click", showMe1, false);
-// btn2.addEventListener("click", showMe2, false);
-// btn3.addEventListener("click", showMe3, false);
-// btn4.addEventListener("click", showMe4, false);
