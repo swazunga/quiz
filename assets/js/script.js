@@ -135,14 +135,18 @@ function highScoreClick() {
     alert("Please enter initials");
     return;
   } else {
-    var highScoreObj = {
+    var highScoreObj = JSON.stringify({
       initials: initials.value,
       score: timer,
-    };
+    });
+    highScores = highScores + highScoreObj;
+    localStorage.setItem("scores", highScoreObj);
+    document.getElementById("high-score-page").innerHTML = highScoreObj;
+
+    return;
   }
-  highScores = highScores + highScoreObj;
-  console.log(highScores);
-  //   highScores.push();
+
+  //   highScores.push(highScoreObj);
 }
 
 submitHighBtn.addEventListener("click", highScoreClick);
