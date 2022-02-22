@@ -1,13 +1,17 @@
-var timer = 555;
+var timer = 5555;
 var currentQuestionIndex = 0;
 var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#question-choices");
-var time = document.querySelector("#time");
+var timeEl = document.querySelector("#time");
 var wordsMain = document.querySelector("#p1");
 var btnStart = document.querySelector("#start-button");
 var response = document.createElement("div");
+var responseEl = document.querySelector("#response");
 var start = document.querySelector("#words-main");
 var finalEl = document.querySelector("#final-page");
+var finalScoreEl = document.querySelector("#final-score");
+var previousQuestionIndex = 0 - 1;
+var formEl = document.querySelector("#form");
 
 var questions = [
   {
@@ -16,7 +20,12 @@ var questions = [
     answer: "A",
   },
   {
-    title: "question 2",
+    title: "question #2: What is your favorite number?",
+    choices: ["One", "Two", "Three", "Four"],
+    answer: "One",
+  },
+  {
+    title: "question 3",
     choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
     answer: "answer 1",
   },
@@ -25,7 +34,11 @@ var questions = [
 function endQuiz() {
   questionsEl.setAttribute("class", "hide");
   finalEl.removeAttribute("class");
-  //   localStorage.getItem("");
+  timeEl.setAttribute("class", "hide");
+  finalScoreEl.innerHTML = "You Final Score: " + timer;
+  finalEl.appendChild(response);
+  response.style.margin = "auto";
+  localStorage.getItem("");
 }
 
 function startQuizButton() {
@@ -43,8 +56,7 @@ function startQuizButton() {
   function tick_timer() {
     timer = timer - 1;
     time.innerHTML = "Time: " + timer;
-    if (currentQuestionIndex === 2) {
-      console.log(currentQuestionIndex);
+    if (currentQuestionIndex === questions.length) {
       clearInterval(myInterval);
     }
     if (timer < 0) {
@@ -56,20 +68,32 @@ function startQuizButton() {
 }
 
 function questionClick(event) {
+  if (event.currentTarget.value === questions[currentQuestionIndex].answer) {
+    choicesEl.appendChild(response);
+    response.innerHTML = "Right!";
+    response.style.fontSize = "24px";
+    response.style.color = "darkgray";
+    response.style.borderTopColor = "darkgray";
+    response.style.borderTop = "solid";
+    response.style.width = "800px";
+    response.style.textAlign = "center";
+  } else {
+    choicesEl.appendChild(response);
+    response.innerHTML = "Wrong!";
+    response.style.fontSize = "24px";
+    response.style.color = "darkgray";
+    response.style.borderTopColor = "darkgray";
+    response.style.borderTop = "solid";
+    response.style.width = "800px";
+    response.style.textAlign = "center";
+    timer = timer - 10;
+  }
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
     getQuestion();
   } else {
     currentQuestionIndex++;
     endQuiz();
-  }
-  if (event.currentTarget.value === questions[currentQuestionIndex].answer) {
-    choicesEl.appendChild(response);
-    response.innerHTML = "Right!";
-  } else {
-    choicesEl.appendChild(response);
-    response.innerHTML = "Wrong!";
-    timer = timer - 10;
   }
 }
 
@@ -96,7 +120,20 @@ function getQuestion() {
     choiceNode.style.width = "200px";
     choiceNode.style.margin = "15px 0";
     choicesEl.appendChild(choiceNode);
+    choicesEl.appendChild(response);
   });
 }
 
 btnStart.addEventListener("click", startQuizButton);
+
+var submitHighBtn = document.querySelector("#submit");
+var initials = document.querySelector("#initials");
+
+function highScoreClick() {
+  if (initials.value === "") {
+    alert("Please enter initials");
+  } else {
+    alert("initials entered!");
+  }
+}
+submitHighBtn.addEventListener("click", highScoreClick);
