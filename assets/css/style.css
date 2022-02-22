@@ -68,6 +68,10 @@ div p {
   width: 200px;
 }
 
+#questions h2 {
+  color: black;
+}
+
 .hide {
   display: none;
 }

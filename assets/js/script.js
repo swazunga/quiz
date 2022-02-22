@@ -11,6 +11,7 @@ var btn3 = document.querySelector("#btn-3");
 var btn4 = document.querySelector("#btn-4");
 var response = document.createElement("div");
 var start = document.querySelector("#words-main");
+var finalEl = document.querySelector("#final-page");
 
 var questions = [
   {
@@ -46,7 +47,12 @@ var questions = [
 // var showMe4 = function () {
 //   btn4.style.backgroundColor = "purple";
 // };
-function endQuiz() {}
+function endQuiz() {
+  questionsEl.setAttribute("class", "hide");
+  console.log(finalEl.class);
+  finalEl.removeAttribute("class");
+  console.log(finalEl.class);
+}
 
 function startQuizButton() {
   start.setAttribute("class", "hide");
@@ -72,20 +78,21 @@ function startQuizButton() {
 }
 
 function questionClick(event) {
-  console.log(event.currentTarget.value);
   if (event.currentTarget.value === questions[currentQuestionIndex].answer) {
-    console.log("Here");
     choicesEl.appendChild(response);
     response.innerHTML = "Right!";
   } else {
-    console.log("There");
     choicesEl.appendChild(response);
     response.innerHTML = "Wrong!";
     timer = timer - 10;
   }
 
-  currentQuestionIndex++;
-  getQuestion();
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    getQuestion();
+  } else {
+    endQuiz();
+  }
 }
 
 function getQuestion() {
