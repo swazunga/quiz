@@ -31,6 +31,8 @@ var questions = [
   },
 ];
 
+var highScores = [];
+
 function endQuiz() {
   questionsEl.setAttribute("class", "hide");
   finalEl.removeAttribute("class");
@@ -133,7 +135,14 @@ function highScoreClick() {
     alert("Please enter initials");
     return;
   } else {
-    alert("initials entered!");
+    var highScoreObj = {
+      initials: initials.value,
+      score: timer,
+    };
   }
+  highScores = highScores + highScoreObj;
+  console.log(highScores);
+  //   highScores.push();
 }
+
 submitHighBtn.addEventListener("click", highScoreClick);
