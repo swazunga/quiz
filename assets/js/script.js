@@ -31,7 +31,9 @@ var questions = [
   },
 ];
 
-var highScores = [];
+var highScores = localStorage.getItem("scores")
+  JSON.parse(localStorage.getItem("scores"))
+  : [];
 
 function endQuiz() {
   questionsEl.setAttribute("class", "hide");
@@ -135,16 +137,18 @@ function highScoreClick() {
     alert("Please enter initials");
     return;
   } else if (localStorage.getItem("scores") === null) {
-    localStorage.setItem("scores", highScoreObj);
+    localStorage.setItem("scores", highScore);
   } else {
-    highScores = highScores + highScoreObj;
-    var highScoreObj = JSON.stringify({
+    highScores.push({
       initials: initials.value,
       score: timer,
     });
+    localStorage.setItem("scores", JSON.stringify(highScores));
   }
 
-  for (var i = 0; i < highScoreObj.length; i++) {}
+  for (var i = 0; i < highScoreObj.length; i++) {
+    console.log(highScores[i]);
+  }
 }
 
 //   highScores.push(highScoreObj);
