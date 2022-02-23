@@ -6,16 +6,20 @@ function displayHighScores() {
   var scores = localStorage.getItem("scores");
   if (scores.length > 0) {
     highScoreEl.setAttribute("class", "highScoreList");
-    console.log(scores);
-
     scores = JSON.parse(scores);
-    console.log(scores);
     for (var i = 0; i < scores.length; i++) {
-      highScoreEl(scores[i]);
+      if (i === 10) {
+        break;
+      }
+      var ul = document.getElementById("list");
+      var li = document.createElement("li");
+      li.appendChild(
+        document.createTextNode(
+          i + 1 + ". " + scores[i].initials + "  " + scores[i].score
+        )
+      );
+      ul.appendChild(li);
     }
-    highScoreEl.textContent =
-      i + 1 + ". " + scores.initials + " " + scores.score;
-    highScorePageEl.appendChild(highScoreEl);
   }
 }
 

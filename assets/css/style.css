@@ -123,3 +123,9 @@ h2,
   color: white;
   background-color: darkslateblue;
 }
+
+#list {
+  text-align: left;
+  margin: 8vw 0 0 45vw;
+  list-style-type: none;
+}

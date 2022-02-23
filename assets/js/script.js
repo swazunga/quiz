@@ -1,4 +1,4 @@
-var timer = 5555;
+var timer = 75;
 var currentQuestionIndex = 0;
 var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#question-choices");
@@ -25,13 +25,23 @@ var questions = [
     answer: "One",
   },
   {
-    title: "question 3",
+    title: "question #3: What",
+    choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    answer: "answer 1",
+  },
+  {
+    title: "question #4: What",
+    choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    answer: "answer 1",
+  },
+  {
+    title: "question #5: What",
     choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
     answer: "answer 1",
   },
 ];
 
-var highScores = localStorage.getItem("scores")
+var highScore = localStorage.getItem("scores")
   ? JSON.parse(localStorage.getItem("scores"))
   : [];
 
@@ -137,20 +147,19 @@ function highScoreClick() {
     alert("Please enter initials");
     return;
   } else if (localStorage.getItem("scores") === null) {
-    localStorage.setItem("scores", highScore);
+    localStorage.setItem("scores", JSON.stringify(highScore));
   } else {
-    highScores.push({
+    highScore.push({
       initials: initials.value,
       score: timer,
     });
-    localStorage.setItem("scores", JSON.stringify(highScores));
+    localStorage.setItem("scores", JSON.stringify(highScore));
   }
 
-  for (var i = 0; i < highScoreObj.length; i++) {
-    console.log(highScores[i]);
+  for (var i = 0; i < highScore.length; i++) {
+    console.log(highScore[i]);
   }
+  return false;
 }
-
-//   highScores.push(highScoreObj);
 
 submitHighBtn.addEventListener("click", highScoreClick);
