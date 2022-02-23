@@ -15,29 +15,40 @@ var formEl = document.querySelector("#form");
 
 var questions = [
   {
-    title: "Question #1: What is your favorite letter?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    title: "Question #1: Inside which HTML element do we put the JavaScript?",
+    choices: ["<script>", "<js>", "<javascript>", "<scripting>"],
+    answer: "<script>",
   },
   {
-    title: "question #2: What is your favorite number?",
-    choices: ["One", "Two", "Three", "Four"],
-    answer: "One",
+    title: "Question #2: How do you write 'Hello World' in an alert box?",
+    choices: [
+      "msgBox('Hello World');",
+      "alert('Hello World');",
+      "alertBox('Hello World');",
+      "msg('Hello World');",
+    ],
+    answer: "alert('Hello World');",
   },
   {
-    title: "question #3: What",
-    choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    answer: "answer 1",
+    title: "Question #3: How do you write an IF statement in JavaScript?",
+    choices: ["if i = 5", "if i = 5 then", "if i == 5 then", "if (i == 5)"],
+    answer: "if (i == 5)",
   },
   {
-    title: "question #4: What",
-    choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    answer: "answer 1",
+    title: "Question #4: How does a FOR loop start?",
+    choices: [
+      "for (i <= 5; i++)",
+      "for i = 1 to 5",
+      "for (i = 0; i <=5; i++)",
+      "for (i = 0; i <= 5)",
+    ],
+    answer: "for (i = 0; i <=5; i++)",
   },
   {
-    title: "question #5: What",
-    choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    answer: "answer 1",
+    title:
+      "Question #5: Which operator is used to assign a value to a variable?",
+    choices: ["X", "=", "*", "-"],
+    answer: "=",
   },
 ];
 
@@ -49,7 +60,7 @@ function endQuiz() {
   questionsEl.setAttribute("class", "hide");
   finalEl.removeAttribute("class");
   timeEl.setAttribute("class", "hide");
-  finalScoreEl.innerHTML = "You Final Score: " + timer;
+  finalScoreEl.textContent = "You Final Score: " + timer;
   finalEl.appendChild(response);
   response.style.margin = "auto";
 }
@@ -151,7 +162,7 @@ function highScoreClick() {
   } else {
     highScore.push({
       initials: initials.value,
-      score: timer,
+      score: timer + 1,
     });
     localStorage.setItem("scores", JSON.stringify(highScore));
   }
