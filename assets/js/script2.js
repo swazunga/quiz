@@ -1,6 +1,7 @@
 var highScorePageEl = document.querySelector("#high-score-page");
 var clearScoresBtn = document.querySelector("#clear-scores");
 var highScoreEl = document.createElement("div");
+var ul = document.getElementById("list");
 
 function displayHighScores() {
   var scores = localStorage.getItem("scores");
@@ -11,7 +12,7 @@ function displayHighScores() {
       if (i === 10) {
         break;
       }
-      var ul = document.getElementById("list");
+
       var li = document.createElement("li");
       li.appendChild(
         document.createTextNode(
@@ -19,13 +20,16 @@ function displayHighScores() {
         )
       );
       ul.appendChild(li);
+      scores.sort(function (a, b) {
+        return b.score - a.score;
+      });
     }
   }
 }
 
 function clearScores() {
   localStorage.setItem("scores", "");
-  highScoreEl.textContent = "";
+  ul.textContent = "";
 }
 
 displayHighScores();
