@@ -32,7 +32,7 @@ var questions = [
 ];
 
 var highScores = localStorage.getItem("scores")
-  JSON.parse(localStorage.getItem("scores"))
+  ? JSON.parse(localStorage.getItem("scores"))
   : [];
 
 function endQuiz() {
