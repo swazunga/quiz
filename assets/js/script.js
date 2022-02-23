@@ -157,8 +157,6 @@ function highScoreClick() {
   if (initials.value === "") {
     alert("Please enter initials");
     return;
-  } else if (localStorage.getItem("scores") === null) {
-    localStorage.setItem("scores", JSON.stringify(highScore));
   } else {
     highScore.push({
       initials: initials.value,

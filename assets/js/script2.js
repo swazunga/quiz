@@ -4,10 +4,13 @@ var highScoreEl = document.createElement("div");
 var ul = document.getElementById("list");
 
 function displayHighScores() {
-  var scores = localStorage.getItem("scores");
+  var scores = localStorage.getItem("scores") || [];
   if (scores.length > 0) {
     highScoreEl.setAttribute("class", "highScoreList");
     scores = JSON.parse(scores);
+    scores.sort(function (a, b) {
+      return b.score - a.score;
+    });
     for (var i = 0; i < scores.length; i++) {
       if (i === 10) {
         break;
@@ -20,9 +23,6 @@ function displayHighScores() {
         )
       );
       ul.appendChild(li);
-      scores.sort(function (a, b) {
-        return b.score - a.score;
-      });
     }
   }
 }
