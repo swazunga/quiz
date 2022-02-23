@@ -134,21 +134,19 @@ function highScoreClick() {
   if (initials.value === "") {
     alert("Please enter initials");
     return;
+  } else if (localStorage.getItem("scores") === null) {
+    localStorage.setItem("scores", highScoreObj);
   } else {
+    highScores = highScores + highScoreObj;
     var highScoreObj = JSON.stringify({
       initials: initials.value,
       score: timer,
     });
-    highScores = highScores + highScoreObj;
-    localStorage.setItem("scores", highScoreObj);
-
-    for (var = i; i < highScores.length, i++) {
-        
-    }
-
   }
 
-  //   highScores.push(highScoreObj);
+  for (var i = 0; i < highScoreObj.length; i++) {}
 }
+
+//   highScores.push(highScoreObj);
 
 submitHighBtn.addEventListener("click", highScoreClick);
