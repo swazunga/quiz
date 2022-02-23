@@ -141,9 +141,11 @@ function highScoreClick() {
     });
     highScores = highScores + highScoreObj;
     localStorage.setItem("scores", highScoreObj);
-    document.getElementById("high-score-page").innerHTML = highScoreObj;
 
-    return;
+    for (var = i; i < highScores.length, i++) {
+        
+    }
+
   }
 
   //   highScores.push(highScoreObj);

@@ -111,7 +111,8 @@ h2,
   text-align: center;
 }
 
-.high-score-page {
+.high-score-page,
+.buttons {
   display: flex;
   justify-content: space-around;
   margin: 50px;
